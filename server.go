@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net/http"
 
@@ -29,7 +28,7 @@ func main() {
 type myHandler struct{}
 
 func (*myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "My server: "+r.URL.String())
+	log.Printf("Request: %v \n", r.URL.String())
 
 	if handler, ok := mux[r.URL.String()]; ok {
 		handler(w, r)
